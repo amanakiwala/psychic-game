@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+</head>
+<body>
+ <div id="game">
+    <p>The Psychic Game</p>
+
+ </div>
+   <script >
+      // cerate an array that lists out all the options
+      
+      var options = ['a' ,'b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','w','x','y','z'];
+      //declares result to 0
+      var wins =0;
+      var losses =0;
+      var numGuesses = 9;
+      var guesses = "";
+      
+
+      //captures key clicks
+     document.onkeyup = function(event){
+     	//determines which key selected and make it lower case
+     	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+     	
+     	//create code to randomlychoose one of the options
+     	var computerGuess = options[Math.floor(Math.random()*options.length)];
+     	
+      //function reset;
+      function reset(){
+        numGuesses =9;
+        guesses ="";
+      }
+     	
+     	  if(userGuess == computerGuess){
+     	  	 wins++ ;
+       	  } else {
+     		  
+           numGuesses--;
+
+           guesses += userGuess + " ";
+           if (numGuesses == 0){
+            losses++;
+            reset();
+           }
+
+          }  
+     
+        
+     	
+     	//Taking the tallies and displaying them in html
+     	var html = "<h2>The Psychic Game</h2> <p>Guess what letter I am thinking of</p>" +
+     
+      
+		"<p>wins: " + wins + "</p>" 
+    +
+		"<p>losses: " + losses +  "</p>"
+    +
+    "<p>Guesses left: " + numGuesses + "</p>"
+    +
+    "<p>Your Guesses so far: " + guesses  + "</p>"
+     ;
+     
+        //placing the html into game ID
+        document.querySelector('#game').innerHTML = html;
+        
+    }
+    </script>
+    </body>
+    </html>
